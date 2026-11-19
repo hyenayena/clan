@@ -24,6 +24,8 @@ test('the profile passes the chat module check', () => {
 	assert.equal(checked.passWord, 'PASS');
 	assert.equal(checked.loadInstructions, false);
 	assert.equal(checked.noun, 'clan');
+	assert.equal(checked.mainText, 'direction');
+	assert.equal(checked.agentInput, 'turn');
 });
 
 test('agents carry the label, colour, tier and card', () => {

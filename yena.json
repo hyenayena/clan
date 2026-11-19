@@ -1,6 +1,6 @@
 {
 	"name": "clan",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Several personas talk with the user: to weigh a decision or just to chat",
 	"runtime": "node",
 	"entry": "src/index.ts",
@@ -8,7 +8,7 @@
 	"dependencies": {
 		"chat": {
 			"source": "chat",
-			"version": "^0.6.0"
+			"version": "^0.7.0"
 		},
 		"md": {
 			"source": "md",

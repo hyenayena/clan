@@ -2,7 +2,7 @@
 
 Several personas talk with the user in one chat: to weigh a decision from different sides or just to chat with characters.
 
-Status: steps 1 and 4 (version 0.1.0). A clan chat is the user's chat with a profile: the moderator is the main model with only `Agent` and `SendMessage`, and each persona is a tool-less subagent whose reply is its line. A clan session can be listed and resumed; there is no memory across sessions yet.
+Status: steps 1 and 4 (version 0.1.1). A clan chat is the user's chat with a profile: the moderator is the main model with only `Agent` and `SendMessage`, and each persona is a tool-less subagent whose reply is its line. The moderator speaks only as a stage director: a muted third-person action before a persona's call, never speech; the personas hear the user's words and the lines said in the turn, not the moderator's cue. A turn where nobody answers shows `No one answered`. A clan session can be listed and resumed; there is no memory across sessions yet.
 
 ## Commands
 | Command | What it does |
@@ -43,7 +43,7 @@ None of its own: clan writes no files; the personas are the hub files above. The
 None.
 
 ## Dependencies
-- `chat` `^0.6.0` (the chat profile API: `openProfileChat`, `checkProfile`, the tiers and tones): the chat runs the profile through claude.
+- `chat` `^0.7.0` (the chat profile API: `openProfileChat`, `checkProfile`, the tiers and tones; the profile sets `mainText` and `agentInput`): the chat runs the profile through claude.
 - `md` `^0.1.1` (`hubDirFor`, the hub folder).
 - Core is not imported directly. Needs the `claude` module to run a chat.
 
@@ -51,7 +51,9 @@ None.
 - No memory across chats. A resumed clan session shows the saved persona lines, but the personas themselves are respawned; a clan session does not appear in `chat resume`, and fork and rewind are refused for it.
 - Personas have no tools: their subagents cannot read files, run commands or use MCP servers.
 - The personas' lines are model output: the card and the names reach the model and the transcript.
-- Not verified live yet: the foreground persona line, the `SendMessage` reply, `PASS` hidden, the call cap, and `settingSources: []` with a claude-login credential.
+- Names and cards are static: no renaming from the chat.
+- A persona line reaches the next persona as one row (line breaks become ` / `), so it cannot fake another speaker's row; the user's text goes in as is.
+- Not verified live yet: the foreground persona line, the `SendMessage` reply after the turn ended, `PASS` hidden, the call cap, `settingSources: []` with a claude-login credential, direction only before a persona, no trailing summary, `No one answered`, the personas reacting to the user's words, `clan resume` replays, and `SendMessage` accepting the rewritten message.
 
 ## Development
 `./yena dev check clan` (from the console: `dev check clan`). The scripts run inside the yena tree: `tsc` and `tsx` come from the root's `node_modules`, and the module imports host types from `src/api.ts`. The architecture is in `/data/md/architecture/clan.md`.

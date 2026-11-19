@@ -23,6 +23,8 @@ export function buildProfile(personas: readonly Persona[]): ChatProfile {
 		mainTier: 'standard',
 		loadInstructions: false,
 		passWord: 'PASS',
+		mainText: 'direction',
+		agentInput: 'turn',
 	};
 }
 
