@@ -8,6 +8,8 @@ test('the moderator prompt lists the personas and the call rules', () => {
 	assert.match(p, /subagent_type/);
 	assert.match(p, /SendMessage/);
 	assert.match(p, /at most 3 agent calls/);
+	assert.match(p, /at most once per user message/);
+	assert.match(p, /do not call that character again/);
 	assert.match(p, /Never voice, quote or repeat/);
 	assert.match(p, /write just: go/);
 	assert.match(p, /stage direction in the third person/);

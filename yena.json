@@ -1,6 +1,6 @@
 {
 	"name": "clan",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Several personas talk with the user: to weigh a decision or just to chat",
 	"runtime": "node",
 	"entry": "src/index.ts",
